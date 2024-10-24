@@ -1,70 +1,80 @@
-// lib/welcome_screen.dart
-
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  // Ruta para la navegación
   static const String routeName = '/welcome';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Fondo degradado
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.teal, Colors.greenAccent],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
+            colors: [Colors.blue[900]!, Colors.blue[300]!],
           ),
         ),
-        // Contenido central
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Logo de la aplicación
-                Image.asset(
-                  'link del logo', // Asegúrate de tener un logo en esta ruta
-                  height: 150,
-                ),
-                SizedBox(height: 30),
-                // Nombre de la aplicación
-                Text(
-                  'Lenguas Vivas Putumayo',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundColor: Colors.white,
+                    child: Image.network(
+                      'https://tse2.mm.bing.net/th?id=OIG3.LoNbQX2sRwljKQrOkvNY&pid=ImgGn',
+                      height: 110,
+                      width: 110,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 15),
-                // Breve descripción
-                Text(
-                  'Preservando las lenguas nativas de las comunidades indígenas del Putumayo a través de herramientas educativas interactivas.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.blue,
+                  SizedBox(height: 40),
+                  ShaderMask(
+                    shaderCallback: (bounds) => LinearGradient(
+                      colors: [Colors.white, Colors.white70],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ).createShader(bounds),
+                    child: Text(
+                      'RAICES',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 10.0,
+                            color: Colors.black26,
+                            offset: Offset(5.0, 5.0),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 40),
-                // Botón para Iniciar Sesión
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
+                  SizedBox(height: 10),
+                  Text(
+                    'Preservando nuestras lenguas',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+
+                  SizedBox(height: 40),
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      backgroundColor: Colors.red, // Fondo del botón
-                      disabledBackgroundColor: Colors.teal, // Texto del botón
+                      foregroundColor: Colors.blue[900], backgroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                     child: Text(
@@ -75,33 +85,42 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 15),
-                // Botón para Registrarse
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
+                  SizedBox(height: 20),
+                  OutlinedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/register');
                     },
                     style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      side: BorderSide(color: Colors.purple),
+                      foregroundColor: Colors.white, side: BorderSide(color: Colors.white),
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                     child: Text(
                       'Registrarse',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.yellow,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/main');
+                    },
+                    child: Text(
+                      'Explorar como invitado',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
